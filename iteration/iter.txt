@@ -1,0 +1,6 @@
+//Unorder list
+<ul>
+    {{range .}}
+        <li><strong>{{.FirstName}} {{.LastName}}</strong> </li>
+    {{end}}
+</ul>

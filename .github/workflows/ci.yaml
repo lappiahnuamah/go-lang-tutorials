@@ -1,0 +1,32 @@
+name: Go
+
+on:
+  push:
+    branches: golang
+#   pull_request:
+#     branches: [ $default-branch ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+            working-directory: ./server
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.24.1'
+
+      - name: Install dependencies
+        run: go mod tidy
+        
+      - name: Run test
+        run: go test ./...
+        
+      - name: Build
+        run: go build -v -o server
